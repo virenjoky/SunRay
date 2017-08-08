@@ -16,4 +16,5 @@ public class UserData implements Serializable {
      float Weight;
      String Gender;
      String lastOpenedTimestamp;
+     String firstOpenedTimestamp;
 }

@@ -38,7 +38,7 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="397dp"
+        android:layout_width="0dp"
         android:layout_height="83dp"
         android:background="@drawable/headerhealthfacts"
         android:elevation="0dp"
@@ -46,7 +46,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="5dp" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -86,29 +86,81 @@
 
     <ImageButton
         android:id="@+id/heartButton1"
-        android:layout_width="66dp"
-        android:layout_height="67dp"
-        android:background="@drawable/heartmeter1"
+        android:layout_width="148dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/heartimage1"
+        android:scaleType="matrix"
         android:visibility="visible"
-        tools:layout_editor_absoluteY="368dp"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.498" />
+        app:layout_constraintRight_toRightOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"/>
 
     <ImageButton
         android:id="@+id/heartButton2"
-        android:layout_width="116dp"
-        android:layout_height="71dp"
+        android:layout_width="148dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="220dp"
-        android:background="@drawable/heartmeter2"
+        android:background="@drawable/heartimage2"
         android:scaleType="matrix"
         android:visibility="visible"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+
+    <ImageButton
+        android:id="@+id/heartButton3"
+        android:layout_width="148dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/heartimage3"
+        android:scaleType="matrix"
+        android:visibility="visible"
         app:layout_constraintHorizontal_bias="0.636"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <ImageButton
+        android:id="@+id/heartButton4"
+        android:layout_width="148dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/heartimage4"
+        android:scaleType="matrix"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="148dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="200dp"
+        android:foregroundGravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:scaleType="matrix"
+        android:text="0"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
     <Button
         android:id="@+id/viewhealthbut"

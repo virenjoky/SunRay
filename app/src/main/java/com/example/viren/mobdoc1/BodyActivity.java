@@ -1,6 +1,8 @@
 package com.example.viren.mobdoc1;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,6 +25,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -96,10 +99,21 @@ public class BodyActivity extends Activity implements Camera.PictureCallback, Su
 
 
         //code for overlay - Viren
-        ImageButton layout = (ImageButton)findViewById(R.id.heartButton1);
+/*        ImageButton layout = (ImageButton)findViewById(R.id.heartButton1);
         layout.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE
         ImageButton layout2 = (ImageButton)findViewById(R.id.heartButton2);
-        layout2.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE
+        layout2.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE*/
+
+        ImageButton layout11 = (ImageButton)findViewById(R.id.heartButton1);
+        layout11.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE
+        ImageButton layout12 = (ImageButton)findViewById(R.id.heartButton2);
+        layout12.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE
+        ImageButton layout13 = (ImageButton)findViewById(R.id.heartButton3);
+        layout13.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE
+        ImageButton layout14 = (ImageButton)findViewById(R.id.heartButton4);
+        layout14.setVisibility(View.INVISIBLE); // you can use INVISIBLE also instead of GONE
+        TextView editText99 = (TextView)findViewById(R.id.textView3);
+        editText99.setVisibility(View.INVISIBLE);
 
   /*      if (switcher == 1) {
             layout.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
@@ -123,6 +137,7 @@ public class BodyActivity extends Activity implements Camera.PictureCallback, Su
             public void onClick(View v) {
                 // Perform action on click
 
+/*
                 if (switcher == 1) {
                     ImageButton layout = (ImageButton)findViewById(R.id.heartButton1);
                     layout.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
@@ -130,6 +145,46 @@ public class BodyActivity extends Activity implements Camera.PictureCallback, Su
                     ImageButton layout2 = (ImageButton)findViewById(R.id.heartButton2);
                     layout2.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
                 }
+*/
+
+
+
+
+
+                String heartPer=readFromFile("heartRate.txt");
+                int heartpercent = Integer.parseInt(heartPer);
+
+                if (heartpercent <= 20 )
+                {
+                    ImageButton layout11 = (ImageButton)findViewById(R.id.heartButton1);
+                    layout11.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
+                }
+                else if (heartpercent > 20 && heartpercent <=40 )
+                {
+                    ImageButton layout12 = (ImageButton)findViewById(R.id.heartButton2);
+                    layout12.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
+                }
+                else if (heartpercent > 40 && heartpercent <=60 )
+                {
+                    ImageButton layout13 = (ImageButton)findViewById(R.id.heartButton3);
+                    layout13.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
+                }
+                else if (heartpercent > 60 /*&& heartpercent <=80*/ )
+                {
+                    ImageButton layout14 = (ImageButton)findViewById(R.id.heartButton4);
+                    layout14.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
+                }
+               /* else
+                {
+                    //ImageButton layout15 = (ImageButton)findViewById(R.id.heartButton4);
+                    layout14.setVisibility(View.VISIBLE); // you can use INVISIBLE also instead of GONE
+                }*/
+
+                TextView editText99 = (TextView)findViewById(R.id.textView3);
+                editText99.setVisibility(View.VISIBLE);
+                editText99.setText(String.valueOf(heartpercent), TextView.BufferType.EDITABLE);
+
+
             }
         });
 
@@ -146,6 +201,32 @@ public class BodyActivity extends Activity implements Camera.PictureCallback, Su
             }
         });*/
         addListenerOnButton();
+    }
+
+    // Read text from file
+    public String readFromFile(String fileName) {
+        //reading text from file
+        String s="";
+        try {
+            FileInputStream fileIn=openFileInput(fileName);
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[100];
+
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                s +=readstring;
+            }
+            InputRead.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
     }
 
     public void addListenerOnButton() {
@@ -199,7 +280,9 @@ public class BodyActivity extends Activity implements Camera.PictureCallback, Su
             try {
                 mCamera = Camera.open(cameraIndex);
 
-                mCamera.setDisplayOrientation(270);
+                setCameraDisplayOrientation(this, cameraIndex,mCamera);
+                //mCamera.setDisplayOrientation(270);
+               // mCamera.setDisplayOrientation(90);
                 mCamera.setPreviewDisplay(mCameraPreview.getHolder());
                 if (mIsCapturing) {
                     mCamera.startPreview();
